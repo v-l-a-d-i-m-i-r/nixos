@@ -76,7 +76,9 @@ in
 
   home-manager.useGlobalPkgs = true;
   home-manager.users.vladimir.home.file = {
-    ".zshrc".source = "/etc/nixos/files/home/vladimir/.zshrc";
+    # https://discourse.nixos.org/t/adding-folders-and-scripts/5114/4
+    # ".zshrc".text = (builtins.readFile /etc/nixos/files/home/vladimir/.zshrc);
+    ".zshrc".source = /etc/nixos/files/home/vladimir/.zshrc;
   };
 
   nix.autoOptimiseStore = true;
