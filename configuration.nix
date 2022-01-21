@@ -77,6 +77,7 @@ in
   home-manager.useGlobalPkgs = true;
   home-manager.users.vladimir.home.file = {
     # https://discourse.nixos.org/t/adding-folders-and-scripts/5114/4
+    # https://github.com/nix-community/home-manager/issues/589#issuecomment-466594137
     # ".zshrc".text = (builtins.readFile /etc/nixos/files/home/vladimir/.zshrc);
     ".zshrc".source = /etc/nixos/files/home/vladimir/.zshrc;
   };
