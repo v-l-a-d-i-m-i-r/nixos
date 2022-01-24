@@ -55,7 +55,6 @@ in
     glances
     pciutils
     powertop
-    home-manager
   ];
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
@@ -75,11 +74,15 @@ in
   };
 
   home-manager.useGlobalPkgs = true;
-  home-manager.users.vladimir.home.file = {
+  home-manager.users.vladimir = {config, ...}: {
     # https://discourse.nixos.org/t/adding-folders-and-scripts/5114/4
     # https://github.com/nix-community/home-manager/issues/589#issuecomment-466594137
     # ".zshrc".text = (builtins.readFile /etc/nixos/files/home/vladimir/.zshrc);
-    ".zshrc".source = /etc/nixos/files/home/vladimir/.zshrc;
+    home.file.".zshrc".source = /etc/nixos/files/home/vladimir/.zshrc;
+
+    # home.activation.linkMyFiles = config.lib.dag.entryAfter ["writeBoundary"] ''
+      #ln -s ${toString /etc/nixos/files/home/vladimir/.zshrc} ~/.zrc
+   #'';
   };
 
   nix.autoOptimiseStore = true;
