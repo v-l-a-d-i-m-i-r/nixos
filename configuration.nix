@@ -19,12 +19,7 @@ in
   boot.loader.grub.enable = true;
   boot.loader.grub.version = 2;
   boot.loader.grub.device = "/dev/sda"; # or "nodev" for efi only
-
-  boot = {
-   # kernelParams = [ "acpi_rev_override" ];
-    kernelModules = [ "acpi_call" ];
-    extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
-  };
+  boot.cleanTmpDir = true;
 
   hardware.cpu.intel.updateMicrocode = true;
   #hardware.enableAllFirmware = true;
@@ -55,6 +50,7 @@ in
     glances
     pciutils
     powertop
+    vim
   ];
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
